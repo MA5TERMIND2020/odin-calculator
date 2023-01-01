@@ -69,7 +69,6 @@ header {
 }
 
 .container-3 {
-    margin-top: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content:center;
@@ -77,7 +76,6 @@ header {
 }
 
 .container-4 {
-    margin-top: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content:center;
@@ -85,7 +83,6 @@ header {
 }
 
 .container-5 {
-    margin-top: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content:center;
@@ -93,7 +90,6 @@ header {
 }
 
 .container-6 {
-    margin-top: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content:center;
@@ -101,7 +97,6 @@ header {
 }
 
 .container-7 {
-    margin-top: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content:center;

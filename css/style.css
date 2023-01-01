@@ -20,52 +20,40 @@ header {
     width: 100vw;
     height: 5rem;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 .container {
-    /* position: relative; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     border: 5px solid black;
+    border-radius: 2rem;
+    width: 44%;
     margin: auto;
-    width: 50%;
-    
-    background: darkgrey;
+    background: rgb(0, 30, 107);
 }
 
 .container-2 {
     display: flex;
     flex-flow: column nowrap;
-    height: 85px;
-    border: 3px solid black;
-    border-radius: 1rem;
-    font-size: 3.5rem;
-    /* height: calc(100vh - 5rem); */
+    height: 6rem;
+    justify-content:center;
+    align-items: center;
+    margin: 10px 0 8px 0;
+    padding: 8px;
 }
 
-/* .screen {
-    position: absolute;
-    border: 3px solid black;
+.container-2 .screen {
+    width: 600px;
+    text-align: end;
+    background-color: black;
+    color: rgb(0, 138, 12);
+    border: 3px solid rgb(0, 0, 73);
     border-radius: 1rem;
-    font-size: 3.5rem;
-} */
-
-.clear {
-    /* position: absolute; */
-    right: 25px;
-    height: 85px;
-    width: 85px;
-    border: 3px solid black;
-    border-radius: 1em;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-    background-color: blanchedalmond;
+    font-size: 5rem;
+    padding-right: 10px;
 }
 
 .container-3 {
@@ -75,38 +63,43 @@ header {
     align-items: center;
 }
 
+.container-3 .top {
+    width: 240px;
+    background-color: red;
+}
+
 .container-4 {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content:center;
     align-items: center;
 }
 
 .container-5 {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content:center;
     align-items: center;
 }
 
 .container-6 {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content:center;
     align-items: center;
 }
 
 .container-7 {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content:center;
     align-items: center;
 }
 
 
 .btn {
-    width: 85px;
-    height: 85px;
+    width: 150px;
+    height: 90px;
     border: 3px solid black;
     border-radius: 1em;
     display: flex;
@@ -115,7 +108,17 @@ header {
     align-items: center;
     justify-items: center;
     text-align: center;
-    margin: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 5px;
     background-color: blanchedalmond;
     
+}
+
+.side {
+    background-color: gold;
+}
+
+.equals {
+    background-color: blue;
 }

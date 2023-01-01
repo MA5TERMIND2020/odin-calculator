@@ -31,7 +31,7 @@ header {
     border: 5px solid black;
     margin: auto;
     width: 50%;
-    height: calc(100vh - 5rem);
+    
     background: darkgrey;
 }
 
@@ -42,6 +42,7 @@ header {
     border: 3px solid black;
     border-radius: 1rem;
     font-size: 3.5rem;
+    /* height: calc(100vh - 5rem); */
 }
 
 /* .screen {
@@ -68,6 +69,38 @@ header {
 }
 
 .container-3 {
+    margin-top: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-items: center;
+}
+
+.container-4 {
+    margin-top: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-items: center;
+}
+
+.container-5 {
+    margin-top: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-items: center;
+}
+
+.container-6 {
+    margin-top: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-items: center;
+}
+
+.container-7 {
     margin-top: 100px;
     display: flex;
     flex-flow: row wrap;

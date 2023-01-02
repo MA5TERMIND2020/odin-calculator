@@ -40,22 +40,24 @@ header {
 .container-2 {
     display: flex;
     flex-flow: column nowrap;
-    height: 6rem;
     justify-content:center;
     align-items: center;
     margin: 10px 0 8px 0;
-    padding: 8px;
 }
 
 .container-2 .screen {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
     width: 600px;
     text-align: end;
     background-color: black;
     color: rgb(0, 138, 12);
-    border: 3px solid rgb(0, 0, 73);
-    border-radius: 1rem;
-    font-size: 5rem;
     padding-right: 10px;
+}
+
+.container-2 .big {
+    font-size: 4rem;
 }
 
 .container-3 {

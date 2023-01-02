@@ -17,7 +17,7 @@ const currentScreen = document.querySelector('.current');
 /*Add an Event Listener to the Number buttons that updates the currentValue variable
  and displays it on the screen if it is not longer than 10 digits.*/
 numbers.forEach(item => item.addEventListener('click', (e) => {
-    if (currentValue.length <= 10) {
+    if (currentValue.length <= 18) {
         currentValue += e.target.textContent;
     currentScreen.textContent = currentValue;
     }
@@ -43,4 +43,35 @@ clear.addEventListener('click', () => {
     operator = '';
     previousScreen.textContent = '';
     currentScreen.textContent = '';
+})
+
+/*Add an Event Listener to the Equals button that calculates the expression and then displays the result on the screen as long as it is 15
+ characters or less.*/
+equals.addEventListener('click', () => {
+    previousValue = Number(previousValue);
+    currentValue = Number(currentValue);
+    if (operator === "+") {
+        previousValue += currentValue;
+    }
+    else if (operator === "-") {
+        previousValue -= currentValue
+    }
+    else if (operator === "*") {
+        previousValue *= currentValue
+    }
+    else {
+        previousValue /= currentValue
+    }
+
+    previousValue = (Math.round(previousValue * 1000) / 1000);
+
+    previousValue = previousValue.toString();
+    currentValue = previousValue.toString();
+    previousScreen.textContent = '';
+    if (previousValue.length > 15) {
+        currentScreen.textContent = "Too Large to Show!"
+    }
+    else {
+        currentScreen.textContent = previousValue;
+    }
 })

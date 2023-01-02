@@ -21,6 +21,7 @@ header {
     height: 5rem;
     text-align: center;
     margin-bottom: 5px;
+    border-bottom: 1px solid whitesmoke;
 }
 
 .container {
@@ -30,6 +31,7 @@ header {
     align-items: center;
     border: 5px solid black;
     border-radius: 2rem;
+    box-shadow: 0 0 20px;
     width: 44%;
     margin: auto;
     background: rgb(0, 30, 107);
@@ -102,6 +104,7 @@ header {
     height: 90px;
     border: 3px solid black;
     border-radius: 1em;
+    box-shadow: 0 0 10px;
     display: flex;
     justify-content: center;
     align-content: center;

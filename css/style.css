@@ -51,6 +51,7 @@ header {
     justify-content: center;
     width: 600px;
     text-align: end;
+    height: 3rem;
     background-color: black;
     color: rgb(0, 138, 12);
     padding-right: 10px;

@@ -35,3 +35,12 @@ operators.forEach(item => item.addEventListener('click', (e) => {
     currentValue = '';
     }
 }))
+
+/*Add an Event Listener to the Clear button that empties the Global variables and clears the screen.*/
+clear.addEventListener('click', () => {
+    previousValue = '';
+    currentValue = '';
+    operator = '';
+    previousScreen.textContent = '';
+    currentScreen.textContent = '';
+})

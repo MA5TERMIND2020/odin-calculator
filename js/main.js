@@ -48,30 +48,32 @@ clear.addEventListener('click', () => {
 /*Add an Event Listener to the Equals button that calculates the expression and then displays the result on the screen as long as it is 15
  characters or less.*/
 equals.addEventListener('click', () => {
-    previousValue = Number(previousValue);
-    currentValue = Number(currentValue);
+    if (currentValue != '' && previousValue != '') {
+        previousValue = Number(previousValue);
+        currentValue = Number(currentValue);
     if (operator === "+") {
-        previousValue += currentValue;
+            previousValue += currentValue;
     }
-    else if (operator === "-") {
-        previousValue -= currentValue
-    }
-    else if (operator === "*") {
-        previousValue *= currentValue
-    }
-    else {
-        previousValue /= currentValue
-    }
+        else if (operator === "-") {
+            previousValue -= currentValue
+        }
+        else if (operator === "*") {
+            previousValue *= currentValue
+        }
+        else {
+            previousValue /= currentValue
+        }
 
-    previousValue = (Math.round(previousValue * 1000) / 1000);
+        previousValue = (Math.round(previousValue * 1000) / 1000);
 
-    previousValue = previousValue.toString();
-    currentValue = previousValue.toString();
-    previousScreen.textContent = '';
+        previousValue = previousValue.toString();
+        currentValue = previousValue.toString();
+        previousScreen.textContent = '';
     if (previousValue.length > 15) {
         currentScreen.textContent = "Too Large to Show!"
     }
-    else {
+        else {
         currentScreen.textContent = previousValue;
-    }
+        }
+    }    
 })

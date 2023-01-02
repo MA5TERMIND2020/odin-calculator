@@ -7,7 +7,7 @@ let currentValue = '';
 const clear = document.querySelector('.clear');
 const backspace = document.querySelector('.backspace');
 const numbers = document.querySelectorAll('.number');
-const dot = document.querySelector('.dot');
+const decimal = document.querySelector('.dot');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const previousScreen = document.querySelector('.previous');
@@ -22,6 +22,12 @@ numbers.forEach(item => item.addEventListener('click', (e) => {
     currentScreen.textContent = currentValue;
     }
 }))
+
+decimal.addEventListener('click', (e) => {
+    if (!currentValue.includes('.')) {
+        currentValue += '.';
+    }
+})
 
 /*Add an Event Listener to the Operator buttons, so that if there is no value already in operator, it updates the operator variable, sets the
  previousValue equal to the currentValue, sets the previousScreen.textContent to the previousValue and the operator, sets the

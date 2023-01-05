@@ -1,7 +1,165 @@
 //Set some Global variables
+let num1 = 0;
+let tempNum1Array = [];
+let num2 = 0;
+let tempNum2Array = [];
+let savedFirstValue = 0;
 let operator = '';
-let previousValue = '';
-let currentValue = '';
+let tempOperatorArray = [];
+
+
+
+//Create basic sub-functions for the math ops
+
+function add(num1, num2) {
+    let addValue = (num1 + num2);
+    let rounded = Math.round((addValue + Number.EPSILON) * 100) / 100;
+    rounded = rounded.toFixed(2);
+    console.log("add", rounded);
+    currentScreen.textContent = rounded;
+}
+
+
+function subtract(num1, num2) {
+    let subtractValue = (num1 - num2);
+    let rounded = Math.round((subtractValue + Number.EPSILON) * 100) / 100;
+    rounded = rounded.toFixed(2);
+    console.log("subtract", rounded);
+    currentScreen.textContent = rounded;
+}
+
+
+function multiply(num1, num2) {
+    let multiplyValue = (num1 * num2);
+    let rounded = Math.round((multiplyValue + Number.EPSILON) * 100) / 100;
+    rounded = rounded.toFixed(2);
+    console.log("multiply", rounded);
+    currentScreen.textContent = rounded;
+}
+
+
+function divide(num1, num2) {
+    let divideValue = (num1 / num2);
+    //Error check for division by zero
+    if (divideValue == "Infinity") {
+        return alert("Yo... You is Trippin!!!");
+    } else {
+    let rounded = Math.round((divideValue + Number.EPSILON) * 100) / 100;
+    rounded = rounded.toFixed(2);
+    console.log("divide", rounded);
+    currentScreen.textContent = rounded;
+    }
+}
+
+
+//Use operator variable to determine which function to call
+
+function operate(operator, num1, num2) {
+    switch (operator) {
+        case "+" :
+            console.log("passing through switch +");
+            add(num1, num2);
+            break;
+        case "-" :
+            console.log("passing through switch -");
+            subtract(num1, num2);
+            break;
+        case "*" :
+            console.log("passing through switch *");
+            multiply(num1, num2);
+            break;
+        case "/" :
+            console.log("passing through switch /");
+            divide(num1, num2);
+            break;
+        default:
+            alert("Error! Didn't revieve an operator, or type not as expected!");
+    }
+}
+
+
+//Calculator advanced features and algo
+
+
+function runCalculator() {
+    
+    
+    
+    numbers.forEach(item => item.addEventListener('click', (e) => {
+        savedFirstValue = e.target.textContent;
+        console.log(savedFirstValue)
+
+        //Append to num1
+        if (tempNum1Array.length <= 18 && operator == "") {
+            tempNum1Array.push(savedFirstValue)
+            console.log("show me Array1:", tempNum1Array);
+            num1 = tempNum1Array.join("");
+            console.log("saved first value is: ", num1);
+            currentScreen.textContent = num1;
+        } else {
+
+
+
+
+        //Append to num2 if multiple numbers are pressed
+        tempNum2Array.push(savedFirstValue);
+        console.log("show me Array2: ", tempNum2Array);
+        num2 = tempNum2Array.join("");
+        console.log("num2 is: ", num2);
+        currentScreen.textContent = num2;
+        }
+    }))
+
+
+    function getOperatorSelection() {
+        operators.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                console.log("hit the operator");
+                operator = e.target.textContent;
+                console.log(operator);
+                tempOperatorArray.push(operator);
+                console.log("store temp operator in array for string calcs: ", tempOperatorArray);
+
+                //enable the decimal button if disabled from previous click/use
+                if ((tempNum1Array != "") && (tempNum2Array != "")) {
+                    num1 = tempNum1Array.join("");
+                    num2 = tempNum2Array.join("");
+                    num1 = parseFloat(num1);
+                    num2 = parseFloat(num2);
+                    let tempOperator = tempOperatorArray[tempOperatorArray.length -2].toString();
+                    console.log("Running string calculation now!");
+                    operate(tempOperator, num1, num2);
+                    let tempStringValue = currentScreen.textContent;
+                    console.log("temp string value: ", tempStringValue);
+                    console.loglog("clearing out the arrays and nums now");
+                    tempNum1Array = "";
+                    tempNum2Array = "";
+                    num1 = 0;
+                    num2 = 0;
+                    console.log("array 1: ", tempNum1Array);
+                    console.log("array 2: ", tempNum2Array);
+                    console.log("num 1: ", num1);
+                    console.log("num2: ", num2);
+                    tempNum1Array.push(tempStringValue);
+                    num1 = tempNum1Array.join("");
+                    console.log("pushed string value to array 1: ", tempNum1Array);
+
+                }
+            })
+        })
+    }
+
+    function RunCalculation() {
+        equals.addEventListener('click', () => {
+            console.log("time to run the math!", num1, num2, operator);
+        })
+    }
+
+    getOperatorSelection();
+
+}
+
+
 
 //Create a reference to the DOM elements that we want to work with
 const clear = document.querySelector('.clear');
@@ -14,81 +172,4 @@ const previousScreen = document.querySelector('.previous');
 const currentScreen = document.querySelector('.current');
 
 
-/*Add an Event Listener to the Number buttons that updates the currentValue variable
- and displays it on the screen if it is not longer than 10 digits.*/
-numbers.forEach(item => item.addEventListener('click', (e) => {
-    if (currentValue.length <= 18) {
-        currentValue += e.target.textContent;
-    currentScreen.textContent = currentValue;
-    }
-}))
-
-//Add an Event Listener to the Decimal button, so that as long as no decimal has already been used, it will add the decimal to the currentValue."
-decimal.addEventListener('click', (e) => {
-    if (!currentValue.includes('.')) {
-        currentValue += '.';
-    }
-})
-
-/*Add an Event Listener to the Operator buttons, so that if there is no value already in operator, it updates the operator variable, sets the
- previousValue equal to the currentValue, sets the previousScreen.textContent to the previousValue and the operator, sets the
- currentScreen.textContent equal to the currentValue, and finally empties the contents of currentValue to get ready for new input.*/
-operators.forEach(item => item.addEventListener('click', (e) => {
-    if (!currentValue.includes('-' || '+' || '*' || '/') && !previousValue.includes('-' || '+' || '*' || '/')) {
-    operator = e.target.textContent;
-    previousValue = currentValue;
-    previousScreen.textContent += previousValue + ' ' + operator;
-    currentValue = '';
-    currentScreen.textContent = currentValue;
-    
-    }
-}))
-
-/*Add an Event Listener to the Clear button that empties the Global variables and clears the screen.*/
-clear.addEventListener('click', () => {
-    previousValue = '';
-    currentValue = '';
-    operator = '';
-    previousScreen.textContent = '';
-    currentScreen.textContent = '';
-})
-
-/*Add an Event Listener for the Backspace button.*/
-backspace.addEventListener('click', (e) => {
-    
-    currentValue = currentValue.slice(0, -1);
-    currentScreen.textContent = currentValue;
-})
-
-/*Add an Event Listener to the Equals button that calculates the expression and then displays the result on the screen as long as it is 15
- characters or less.*/
-equals.addEventListener('click', () => {
-    if (currentValue != '' && previousValue != '') {
-        previousValue = Number(previousValue);
-        currentValue = Number(currentValue);
-    if (operator === "+") {
-            previousValue += currentValue;
-    }
-        else if (operator === "-") {
-            previousValue -= currentValue
-        }
-        else if (operator === "*") {
-            previousValue *= currentValue
-        }
-        else {
-            previousValue /= currentValue
-        }
-
-        previousValue = (Math.round(previousValue * 1000) / 1000);
-
-        previousValue = previousValue.toString();
-        currentValue = previousValue.toString();
-        previousScreen.textContent = '';
-    if (previousValue.length > 15) {
-        currentScreen.textContent = "Too Large to Show!"
-    }
-        else {
-        currentScreen.textContent = previousValue;
-        }
-    }    
-})
+runCalculator();

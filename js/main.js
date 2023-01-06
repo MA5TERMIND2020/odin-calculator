@@ -6,6 +6,7 @@ let tempNum2Array = [];
 let savedFirstValue = 0;
 let operator = '';
 let tempOperatorArray = [];
+let operationComplete = false
 
 
 
@@ -43,6 +44,7 @@ function divide(num1, num2) {
     //Error check for division by zero
     if (divideValue == "Infinity") {
         return alert("Yo... You is Trippin!!!");
+        clearScreen();
     } else {
     let rounded = Math.round((divideValue + Number.EPSILON) * 100) / 100;
     rounded = rounded.toFixed(2);
@@ -87,7 +89,18 @@ function runCalculator() {
     
     numbers.forEach(item => item.addEventListener('click', (e) => {
         savedFirstValue = e.target.textContent;
-        console.log(savedFirstValue)
+        console.log("saved first value: ", savedFirstValue);
+
+        if (operationComplete == true) {
+            clearScreen();
+            tempNum1Array.push(savedFirstValue);
+            console.log("show me Array1:", tempNum1Array);
+            num1 = tempNum1Array.join("");
+            console.log("saved first value is: ", num1);
+            currentScreen.textContent = num1;
+            operationComplete = false;
+            return;
+        }
 
         //Append to num1
         if (tempNum1Array.length <= 18 && operator == "") {
@@ -112,8 +125,21 @@ function runCalculator() {
 
 
     function getOperatorSelection() {
+        
         operators.forEach((button) => {
             button.addEventListener('click', (e) => {
+                if (operationComplete == true) {
+                    savedFirstValue = parseInt(currentScreen.textContent);
+                    num1 = savedFirstValue;
+                    tempNum1Array = [num1];
+                    tempNum2Array = [];
+                    tempOperatorArray = [];
+                    operator = e.target.textContent;
+                    console.log(num1, savedFirstValue, tempNum1Array, "Hello!");
+                    operationComplete = false;
+                    return;
+                }
+                
                 console.log("hit the operator");
                 operator = e.target.textContent;
                 console.log(operator);
@@ -131,9 +157,9 @@ function runCalculator() {
                     operate(tempOperator, num1, num2);
                     let tempStringValue = currentScreen.textContent;
                     console.log("temp string value: ", tempStringValue);
-                    console.loglog("clearing out the arrays and nums now");
-                    tempNum1Array = "";
-                    tempNum2Array = "";
+                    console.log("clearing out the arrays and nums now");
+                    tempNum1Array = [];
+                    tempNum2Array = [];
                     num1 = 0;
                     num2 = 0;
                     console.log("array 1: ", tempNum1Array);
@@ -152,10 +178,37 @@ function runCalculator() {
     function RunCalculation() {
         equals.addEventListener('click', () => {
             console.log("time to run the math!", num1, num2, operator);
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+            operate(operator, num1, num2);
+            operationComplete = true;
         })
     }
 
+    //decimal button
+    decimal.addEventListener('click', () => {
+        console.log("decimal pressed");
+        if (operator == "") {
+            console.log("decimal button registered here", decimal.textContent);
+            tempNum1Array.push(decimal.textContent);
+            console.log("append the decimal to array1: ", tempNum1Array);
+            num1 = tempNum1Array.join("");
+            currentScreen.textContent = num1;
+            document.getElementById("decimal").disabled = true;
+            console.log("num1 decimal button should be disabled now");
+        } else {
+            console.log("decimal button registered here", decimal.textContent);
+            tempNum2Array.push(decimal.textContent);
+            console.log("append the decimal to array2: ", tempNum2Array);
+            num2 = tempNum2Array.join("");
+            currentScreen.textContent = num2;
+            document.getElementById("decimal").disabled = true;
+            console.log("num1 decimal button should be disabled now");
+        }
+    })
+
     getOperatorSelection();
+    RunCalculation();
 
 }
 
@@ -171,5 +224,18 @@ const equals = document.querySelector('.equals');
 const previousScreen = document.querySelector('.previous');
 const currentScreen = document.querySelector('.current');
 
+clear.addEventListener('click', clearScreen)
+
+function clearScreen() {
+currentScreen.textContent = 0.00;
+num1 = 0;
+tempNum1Array = [];
+num2 = 0;
+tempNum2Array = [];
+savedFirstValue = 0;
+operator = '';
+tempOperatorArray = [];
+console.log("calculator cleared!")
+}
 
 runCalculator();
